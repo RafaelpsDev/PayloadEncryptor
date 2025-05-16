@@ -1,0 +1,47 @@
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+**/publish/
+**/artifacts/
+**/TestResults/
+
+# User-specific files
+**/.vs/
+**/.vscode/
+**/.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+*.tmp
+*.bak
+*.swp
+*.nupkg
+*.sln.iml
+*.coverage
+*.coveragexml
+*.dotCover
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# NuGet
+**/packages/
+**/.nuget/
+
+# Configs/secrets
+**/secrets.json
+**/appsettings.Local.json
+**/appsettings.Development.json
+
+# Rider/Resharper
+**/_ReSharper*/
+**/*.[Rr]e[Ss]harper
+
+# Backup/temp
+*.tmp
+*.bak
+*.swp
