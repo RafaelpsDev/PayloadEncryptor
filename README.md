@@ -1,149 +1,145 @@
 # 🔐 PayloadEncryptor
 
-O **PayloadEncryptor** é uma aplicação de console em .NET 8 para criptografar payloads JSON utilizando criptografia híbrida (RSA + AES). O fluxo é interativo, guiando o usuário pelo fornecimento das chaves, descriptografia da chave de sessão e criptografia dos dados.
+**PayloadEncryptor** is a .NET 8 console application for encrypting JSON payloads using hybrid encryption (RSA + AES). The flow is interactive, guiding the user through key input, session key decryption, and data encryption.
 
 ---
 
-## 🛠️ Funcionalidades
+## 🛠️ Features
 
-- 🔑 **Criptografia Híbrida:** RSA para troca de chaves e AES para criptografia dos dados.
-- 💬 **Interface Interativa:** Prompts no console para inserção de chaves e JSON.
-- 📦 **Saída em Base64:** O payload criptografado é exibido em Base64.
-- 🧩 **Mensagens Centralizadas:** Todas as mensagens de interface estão centralizadas em `ConsoleMessages` para fácil manutenção e padronização.
-- 🏗️ **Orquestração Separada:** O fluxo de leitura e criptografia do JSON é orquestrado pela classe `UserJsonEncryptor`, promovendo separação de responsabilidades.
+- 🔑 **Hybrid Encryption:** RSA for key exchange and AES for data encryption.
+- 💬 **Interactive Interface:** Console prompts for key and JSON input.
+- 📦 **Base64 Output:** The encrypted payload is displayed in Base64.
+- 🧩 **Centralized Messages:** All interface messages are centralized in `ConsoleMessages` for easy maintenance and standardization.
+- 🏗️ **Separated Orchestration:** The JSON reading and encryption flow is orchestrated by the `UserJsonEncryptor` class, promoting separation of concerns.
 
 ---
 
-## 🚀 Como começar
+## 🚀 Getting Started
 
-### Pré-requisitos
+### Prerequisites
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- Chave privada RSA válida (Base64, PEM)
-- Chave de sessão AES criptografada (Base64)
+- Valid RSA private key (Base64, PEM)
+- Encrypted AES session key (Base64)
 
-### Build do Projeto
-
-
----
-
-## ⚙️ Como funciona
-
-1. **Entrada das chaves:** O usuário fornece a chave privada RSA e a chave de sessão criptografada.
-2. **Decodificação:** A chave privada é decodificada e carregada em um objeto RSA.
-3. **Descriptografia da chave de sessão:** A chave AES é recuperada usando a chave RSA.
-4. **Criptografia do payload:** O JSON fornecido é criptografado com a chave AES.
-5. **Saída:** O payload criptografado é exibido em Base64.
-6. **Mensagens:** Todas as mensagens exibidas ao usuário são centralizadas em `ConsoleMessages`.
+### Project Build
 
 ---
 
-## 📦 Dependências
+## ⚙️ How It Works
 
-- `System.Security.Cryptography` (biblioteca padrão do .NET)
-- `Microsoft.Extensions.DependencyInjection` (injeção de dependência)
-- Não há dependências externas obrigatórias.
+1. **Key Input:** The user provides the RSA private key and the encrypted session key.
+2. **Decoding:** The private key is decoded and loaded into an RSA object.
+3. **Session Key Decryption:** The AES key is recovered using the RSA key.
+4. **Payload Encryption:** The provided JSON is encrypted with the AES key.
+5. **Output:** The encrypted payload is displayed in Base64.
+6. **Messages:** All messages shown to the user are centralized in `ConsoleMessages`.
 
 ---
 
+## 📦 Dependencies
 
+- `System.Security.Cryptography` (standard .NET library)
+- `Microsoft.Extensions.DependencyInjection` (dependency injection)
+- No required external dependencies.
 
+---
 
 # PayloadEncryptor
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-blue)
 ![C# 12](https://img.shields.io/badge/C%23-12.0-blue)
 
-## 📦 Sobre o Projeto
+## 📦 About the Project
 
-**PayloadEncryptor** é um utilitário de linha de comando desenvolvido em C# (.NET 8) para criptografar payloads JSON utilizando criptografia híbrida (RSA + AES). O usuário fornece uma chave privada local (em Base64), uma chave de sessão criptografada (em Base64) e um JSON de entrada. O programa descriptografa a chave de sessão usando a chave privada, e então utiliza essa chave para criptografar o JSON com AES/CBC/PKCS7.
-
----
-
-## 🚀 Funcionalidades
-
-- Leitura interativa de chaves e JSON via console.
-- Decodificação de chave privada PEM (Base64).
-- Descriptografia de chave de sessão (AES) usando RSA.
-- Criptografia de payload JSON com AES/CBC/PKCS7 e IV zerado.
-- Exibição do resultado criptografado em Base64.
-- Permite processar múltiplos JSONs sem reinserir as chaves.
+**PayloadEncryptor** is a command-line utility developed in C# (.NET 8) to encrypt JSON payloads using hybrid encryption (RSA + AES). The user provides a local private key (in Base64), an encrypted session key (in Base64), and an input JSON. The program decrypts the session key using the private key, then uses this key to encrypt the JSON with AES/CBC/PKCS7.
 
 ---
 
-## 🏗️ Estrutura do Projeto
+## 🚀 Features
 
-PayloadEncryptor/
-├── PayloadEncryptor.App/            # Aplicação console (ponto de entrada)
-├── PayloadEncryptor.Application/    # Serviços de aplicação (orquestração)
-├── PayloadEncryptor.Domain/         # Interfaces e utilitários de domínio
-├── PayloadEncryptor.Infrastructure/ # Serviços de infraestrutura (ex: leitura do console)
-├── PayloadEncryptor.sln             # Solução .NET
+- Interactive reading of keys and JSON via console.
+- Decoding of PEM private key (Base64).
+- Decryption of session key (AES) using RSA.
+- Encryption of JSON payload with AES/CBC/PKCS7 and zeroed IV.
+- Display of the encrypted result in Base64.
+- Allows processing multiple JSONs without re-entering the keys.
 
 ---
 
-## ⚙️ Requisitos
+## 🏗️ Project Structure
+
+PayloadEncryptor/  
+├── PayloadEncryptor.App/            # Console application (entry point)  
+├── PayloadEncryptor.Application/    # Application services (orchestration)  
+├── PayloadEncryptor.Domain/         # Domain interfaces and utilities  
+├── PayloadEncryptor.Infrastructure/ # Infrastructure services (e.g., console reading)  
+├── PayloadEncryptor.sln             # .NET solution  
+
+---
+
+## ⚙️ Requirements
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- Console compatível com UTF-8 (para melhor visualização dos títulos)
+- UTF-8 compatible console (for better title visualization)
 
 ---
 
-## 💻 Como Usar
+## 💻 How to Use
 
-1. **Ao iniciar, o programa exibirá um cabeçalho e solicitará:**
-   - Chave privada local (Base64)
-   - Chave de sessão criptografada (Base64)
+1. **On startup, the program will display a header and prompt for:**
+   - Local private key (Base64)
+   - Encrypted session key (Base64)
 
-2. **Depois, cole o JSON de entrada.**
-   - Pressione Enter em uma linha vazia para finalizar a entrada do JSON.
+2. **Then, paste the input JSON.**
+   - Press Enter on an empty line to finish the JSON input.
 
-3. **O payload criptografado será exibido em Base64.**
+3. **The encrypted payload will be displayed in Base64.**
 
-4. **Você pode escolher:**
-   - `1` para adicionar um novo JSON (sem reinserir as chaves)
-   - `2` para encerrar o programa
+4. **You can choose:**
+   - `1` to add a new JSON (without re-entering the keys)
+   - `2` to exit the program
 
 ---
 
-## 🧩 Principais Classes e Responsabilidades
+## 🧩 Main Classes and Responsibilities
 
 - `EncryptionProcess`  
-  Orquestra o fluxo principal.
+  Orchestrates the main flow.
 
 - `DecodeService`  
-  Decodifica a chave privada PEM a partir do Base64.
+  Decodes the PEM private key from Base64.
 
 - `DecryptService`  
-  Descriptografa a chave de sessão (AES) usando RSA.
+  Decrypts the session key (AES) using RSA.
 
 - `EncryptService`  
-  Criptografa o JSON com AES/CBC/PKCS7.
+  Encrypts the JSON with AES/CBC/PKCS7.
 
 - `InputReader`  
-  Responsável pela leitura do JSON do usuário via console.
+  Responsible for reading the user's JSON via console.
 
 - `ConsolePresentationHelper`  
-  Utilitário para centralizar e formatar mensagens no console.
+  Utility to centralize and format console messages.
 
 ---
 
-## 🔒 Segurança
+## 🔒 Security
 
-- **Nunca compartilhe suas chaves privadas.**
-
----
-
-## 📦 Dependências
-
-- `System.Security.Cryptography` (biblioteca padrão do .NET)
-- `Microsoft.Extensions.DependencyInjection` (injeção de dependência)
-- Não há dependências externas obrigatórias.
+- **Never share your private keys.**
 
 ---
 
-## 📄 Licença
+## 📦 Dependencies
 
-Este projeto está licenciado sob os termos da [MIT License](LICENSE).
+- `System.Security.Cryptography` (standard .NET library)
+- `Microsoft.Extensions.DependencyInjection` (dependency injection)
+- No required external dependencies.
+
+---
+
+## 📄 License
+
+This project is licensed under the terms of the [MIT License](LICENSE).
 
 ---
