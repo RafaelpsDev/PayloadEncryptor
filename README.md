@@ -69,12 +69,14 @@
 
 ## 🏗️ Project Structure
 
+```csharp
 PayloadEncryptor/  
 ├── PayloadEncryptor.App/            # Console application (entry point)  
 ├── PayloadEncryptor.Application/    # Application services (orchestration)  
 ├── PayloadEncryptor.Domain/         # Domain interfaces and utilities  
 ├── PayloadEncryptor.Infrastructure/ # Infrastructure services (e.g., console reading)  
 ├── PayloadEncryptor.sln             # .NET solution  
+```
 
 ---
 

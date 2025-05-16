@@ -73,12 +73,15 @@ O **PayloadEncryptor** é uma aplicação de console em .NET 8 para criptografar
 
 ## 🏗️ Estrutura do Projeto
 
-PayloadEncryptor/
-├── PayloadEncryptor.App/            # Aplicação console (ponto de entrada)
-├── PayloadEncryptor.Application/    # Serviços de aplicação (orquestração)
-├── PayloadEncryptor.Domain/         # Interfaces e utilitários de domínio
-├── PayloadEncryptor.Infrastructure/ # Serviços de infraestrutura (ex: leitura do console)
-├── PayloadEncryptor.sln             # Solução .NET
+
+```csharp
+PayloadEncryptor/  
+├── PayloadEncryptor.App/            # Console application (entry point)
+├── PayloadEncryptor.Application/    # Application services (orchestration)
+├── PayloadEncryptor.Domain/         # Domain interfaces and utilities
+├── PayloadEncryptor.Infrastructure/ # Infrastructure services (e.g., console reading)
+├── PayloadEncryptor.sln             # .NET solution
+```
 
 ---
 
