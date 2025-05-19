@@ -1,36 +1,48 @@
 ﻿using PayloadEncryptor.Domain.Interfaces.Application;
+using PayloadEncryptor.Domain.Interfaces.Factories;
 using PayloadEncryptor.Domain.Interfaces.Infrastructure.Services;
 using PayloadEncryptor.Domain.Utils;
 using System.Security.Cryptography;
 
 namespace PayloadEncryptor.Application.Services;
 
-public class UserJsonEncryptor
+public class UserJsonEncryptor(
+    IInputReader _inputReader, 
+    IEncryptService _encryptService,
+    IMockJsonFactory _mockJsonFactory)
 {
-    private readonly IInputReader _inputReader;
-    private readonly IEncryptService _encryptService;
+    private string _json = string.Empty;
 
-    public UserJsonEncryptor(IInputReader inputReader, IEncryptService encryptService)
-    {
-        _inputReader = inputReader;
-        _encryptService = encryptService;
-    }
     public void ProcessJsonLoop(ICryptoTransform encryptor)
     {
         while (true)
-        {
-            ConsolePresentationHelper
-                .CenterReadLine(ConsoleMessages.EnterJson);
-            string json = _inputReader.ReadJsonFromUser();
+        {   
+            var jsonOptionSelected = UserPromptHelper.SelectJsonOption();
 
-            var encryptedPayloadBase64 = _encryptService.EncryptPayload(json, encryptor);
+            if (jsonOptionSelected == "1")
+            {                
+
+                var typeSelected = UserPromptHelper.SelectEventType();
+
+                var operationSelected = UserPromptHelper.SelectOperation();
+
+                _json = _mockJsonFactory.Generate(typeSelected, operationSelected);
+            }
+            else
+            {
+                ConsolePresentationHelper
+               .CenterReadLine(ConsoleMessages.EnterJson);
+                _json = _inputReader.ReadJsonFromUser();
+            }
+
+            var encryptedPayloadBase64 = _encryptService.EncryptPayload(_json, encryptor);
 
             Console.WriteLine();
             ConsolePresentationHelper
                 .CenterReadLine(ConsoleMessages.EncryptedPayload);
             Console.WriteLine(encryptedPayloadBase64);
 
-            if (!SelectOption())
+            if (!UserPromptHelper.SelectOption())
                 break;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using PayloadEncryptor.Domain.Interfaces.Application;
+using PayloadEncryptor.Domain.Interfaces.Factories;
 using PayloadEncryptor.Domain.Interfaces.Infrastructure.Services;
 using PayloadEncryptor.Domain.Models;
 using PayloadEncryptor.Domain.Utils;
@@ -10,7 +11,8 @@ public sealed class EncryptionProcess(
     IInputReader inputReader,
     IDecodeService decodeService,
     IDecryptService decryptService,
-    IEncryptService encryptService)
+    IEncryptService encryptService,
+    IMockJsonFactory mockJsonFactory)
     : IEncryptionProcess
 {
     public void Execute()
@@ -37,7 +39,9 @@ public sealed class EncryptionProcess(
 
         var userJsonEncryptor = new UserJsonEncryptor(
             inputReader,
-            encryptService);
+            encryptService,
+            mockJsonFactory
+            );
 
         userJsonEncryptor.ProcessJsonLoop(encryptor);
     }

@@ -11,6 +11,8 @@
 - 📦 **Base64 Output:** The encrypted payload is displayed in Base64.
 - 🧩 **Centralized Messages:** All interface messages are centralized in `ConsoleMessages` for easy maintenance and standardization.
 - 🏗️ **Separated Orchestration:** The JSON reading and encryption flow is orchestrated by the `UserJsonEncryptor` class, promoting separation of concerns.
+- ⚡ **Automatic JSON Generation:** Allows the user to automatically generate a sample JSON, choosing the event type (`account` or `card`) and the operation (`ins` or `upd`), with no need for manual typing.
+- 🧭 **Standardized Prompts:** All user interaction prompts are standardized and centralized, making the experience and maintenance easier.
 
 ---
 
@@ -28,12 +30,15 @@
 
 ## ⚙️ How It Works
 
-1. **Key Input:** The user provides the RSA private key and the encrypted session key.
+1. **Key input:** The user provides the RSA private key and the encrypted session key.
 2. **Decoding:** The private key is decoded and loaded into an RSA object.
-3. **Session Key Decryption:** The AES key is recovered using the RSA key.
-4. **Payload Encryption:** The provided JSON is encrypted with the AES key.
-5. **Output:** The encrypted payload is displayed in Base64.
-6. **Messages:** All messages shown to the user are centralized in `ConsoleMessages`.
+3. **Session key decryption:** The AES key is recovered using the RSA key.
+4. **JSON selection:** The user can choose to:
+   - Automatically generate a JSON, selecting the type (`account` or `card`) and the operation (`ins` or `upd`).
+   - Manually provide a JSON input.
+5. **Payload encryption:** The provided or generated JSON is encrypted with the AES key.
+6. **Output:** The encrypted payload is displayed in Base64.
+7. **Messages:** All messages shown to the user are centralized in `ConsoleMessages` and prompts are standardized.
 
 ---
 
@@ -64,6 +69,8 @@
 - Encryption of JSON payload with AES/CBC/PKCS7 and zeroed IV.
 - Display of the encrypted result in Base64.
 - Allows processing multiple JSONs without re-entering the keys.
+- **Automatic mock JSON generation** with selection of type (`account` or `card`) and operation (`ins` or `upd`).
+- **Centralized prompts and messages** for a consistent user experience.
 
 ---
 
@@ -93,12 +100,17 @@ PayloadEncryptor/
    - Local private key (Base64)
    - Encrypted session key (Base64)
 
-2. **Then, paste the input JSON.**
-   - Press Enter on an empty line to finish the JSON input.
+2. **Choose how to provide the JSON:**
+   - `1` to automatically generate a JSON (choose the event type and operation)
+   - `2` to manually provide a JSON
 
-3. **The encrypted payload will be displayed in Base64.**
+3. **If you choose automatic generation:**
+   - Select the event type: `account` or `card`
+   - Select the operation: `ins` (insert) or `upd` (update)
 
-4. **You can choose:**
+4. **The encrypted payload will be displayed in Base64.**
+
+5. **You can choose:**
    - `1` to add a new JSON (without re-entering the keys)
    - `2` to exit the program
 
@@ -123,6 +135,12 @@ PayloadEncryptor/
 
 - `ConsolePresentationHelper`  
   Utility to centralize and format console messages.
+
+- `UserPromptHelper`  
+  Centralizes and standardizes all user interaction prompts.
+  
+- `MockJsonFactory`  
+  Generates sample (mock) JSONs for supported types and operations.
 
 ---
 

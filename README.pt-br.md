@@ -6,11 +6,13 @@ O **PayloadEncryptor** é uma aplicação de console em .NET 8 para criptografar
 
 ## 🛠️ Funcionalidades
 
-- 🔑 **Criptografia Híbrida:** RSA para troca de chaves e AES para criptografia dos dados.
-- 💬 **Interface Interativa:** Prompts no console para inserção de chaves e JSON.
-- 📦 **Saída em Base64:** O payload criptografado é exibido em Base64.
-- 🧩 **Mensagens Centralizadas:** Todas as mensagens de interface estão centralizadas em `ConsoleMessages` para fácil manutenção e padronização.
-- 🏗️ **Orquestração Separada:** O fluxo de leitura e criptografia do JSON é orquestrado pela classe `UserJsonEncryptor`, promovendo separação de responsabilidades.
+-	🔑 Criptografia Híbrida: RSA para troca de chaves e AES para criptografia dos dados.
+-	💬 Interface Interativa: Prompts no console para inserção de chaves e JSON.
+-	📦 Saída em Base64: O payload criptografado é exibido em Base64.
+-	🧩 Mensagens Centralizadas: Todas as mensagens de interface estão centralizadas em ConsoleMessages para fácil manutenção e padronização.
+-	🏗️ Orquestração Separada: O fluxo de leitura e criptografia do JSON é orquestrado pela classe UserJsonEncryptor, promovendo separação de responsabilidades.
+-	⚡ Geração Automática de JSON: Permite ao usuário gerar automaticamente um JSON de exemplo, escolhendo o tipo de evento (account ou card) e a operação (ins ou upd), sem necessidade de digitação manual.
+-	🧭 Prompts Padronizados: Todos os prompts de interação com o usuário são padronizados e centralizados, facilitando a experiência e a manutenção.
 
 ---
 
@@ -32,9 +34,12 @@ O **PayloadEncryptor** é uma aplicação de console em .NET 8 para criptografar
 1. **Entrada das chaves:** O usuário fornece a chave privada RSA e a chave de sessão criptografada.
 2. **Decodificação:** A chave privada é decodificada e carregada em um objeto RSA.
 3. **Descriptografia da chave de sessão:** A chave AES é recuperada usando a chave RSA.
-4. **Criptografia do payload:** O JSON fornecido é criptografado com a chave AES.
-5. **Saída:** O payload criptografado é exibido em Base64.
-6. **Mensagens:** Todas as mensagens exibidas ao usuário são centralizadas em `ConsoleMessages`.
+4. **Escolha do JSON:** O usuário pode optar por:
+   - Gerar um JSON automaticamente, escolhendo o tipo (`account` ou `card`) e a operação (`ins` ou `upd`).
+   - Informar manualmente um JSON de entrada.
+5. **Criptografia do payload:** O JSON fornecido ou gerado é criptografado com a chave AES.
+6. **Saída:** O payload criptografado é exibido em Base64.
+7. **Mensagens:** Todas as mensagens exibidas ao usuário são centralizadas em `ConsoleMessages` e os prompts são padronizados.
 
 ---
 
@@ -45,8 +50,6 @@ O **PayloadEncryptor** é uma aplicação de console em .NET 8 para criptografar
 - Não há dependências externas obrigatórias.
 
 ---
-
-
 
 
 # PayloadEncryptor
@@ -98,12 +101,17 @@ PayloadEncryptor/  
    - Chave privada local (Base64)
    - Chave de sessão criptografada (Base64)
 
-2. **Depois, cole o JSON de entrada.**
-   - Pressione Enter em uma linha vazia para finalizar a entrada do JSON.
+2. **Escolha como fornecer o JSON:**
+   - `1` para gerar um JSON automaticamente (escolha o tipo de evento e a operação)
+   - `2` para informar um JSON manualmente
 
-3. **O payload criptografado será exibido em Base64.**
+3. **Se escolher gerar automaticamente:**
+   - Escolha o tipo de evento: `account` ou `card`
+   - Escolha a operação: `ins` (inserção) ou `upd` (atualização)
 
-4. **Você pode escolher:**
+4. **O payload criptografado será exibido em Base64.**
+
+5. **Você pode escolher:**
    - `1` para adicionar um novo JSON (sem reinserir as chaves)
    - `2` para encerrar o programa
 
@@ -128,6 +136,12 @@ PayloadEncryptor/  
 
 - `ConsolePresentationHelper`  
   Utilitário para centralizar e formatar mensagens no console.
+
+- `UserPromptHelper`  
+  Centraliza e padroniza todos os prompts de interação com o usuário.
+
+- `MockJsonFactory`  
+  Gera JSONs de exemplo (mock) para os tipos e operações suportados.
 
 ---
 

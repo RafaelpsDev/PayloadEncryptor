@@ -15,6 +15,14 @@ public static class ConsoleMessages
     public const string DescriptionLine1 = "Este programa irá criptografar um JSON usando uma chave AES,";
     public const string DescriptionLine2 = "a partir de uma chave privada local e uma chave de sessão criptografada.";
     public const string Instructions = "Siga as instruções abaixo para fornecer as informações necessárias.";
+    public const string JsonOptionAuto = "1 - Gerar JSON automaticamente";
+    public const string JsonOptionManual = "2 - Informar JSON manualmente";
+    public const string EventTypePrompt = "Escolha o tipo de evento para gerar o JSON:";
+    public const string EventTypeAccount = "account - Conta";
+    public const string EventTypeCard = "card - Cartão";
+    public const string OperationPrompt = "Escolha a operação do evento:";
+    public const string OperationInsert = "ins - Inserção";
+    public const string OperationUpdate = "upd - Atualização";
     public const string Title = @"
                          _____            _                 _ ______                             _             
                         |  __ \          | |               | |  ____|                           | |            
