@@ -4,16 +4,22 @@ public static class Extensions
 {
     public static string GenerateDateWithYearOffset(this string date, int year)
     {
-        return DateTime.UtcNow.AddYears(year).ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        var offset = TimeSpan.FromHours(-3);
+        var dateGenerated = new DateTimeOffset(DateTime.Now.AddYears(year).Date, offset);
+        return dateGenerated.ToString("yyyy-MM-ddTHH:mm:sszzz");
     }
 
     public static string GenerateDateWithDaysOffset(this string date, int days)
     {
-        return DateTime.UtcNow.AddDays(days).ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        var offset = TimeSpan.FromHours(-3);
+        var dateGenerated = new DateTimeOffset(DateTime.Now.AddDays(days).Date, offset);
+        return dateGenerated.ToString("yyyy-MM-ddTHH:mm:sszzz");
     }
 
     public static string GenerateDateTimeNow(this string date)
     {
-        return DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        var offset = TimeSpan.FromHours(-3);
+        var dateGenerated = new DateTimeOffset(DateTime.Now.Date, offset);
+        return dateGenerated.ToString("yyyy-MM-ddTHH:mm:sszzz");
     }
 }
